@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m '%s' option passed, but no app provided!\e[0m\n", argv[1]);
 				break;
 			}
-			strcpy(command, "sudo pacman -S ");
+			strcpy(command, "paru -S ");
 			strcat(command, cmdflags);
 			//if learning mode is on, print the command being run using the 'learn' function
 			learn(command, LEARN);
@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install-local' option passed, but no package(s) provided!\e[0m\n");
 				break;
 			}
-			strcpy(command, "sudo pacman -U ");
+			strcpy(command, "paru -U ");
 			strcat(command, cmdflags);
 			learn(command, LEARN);
 			system(command);
@@ -119,7 +119,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'install' option passed, but no app provided!\e[0m\n");
 				break;
 			}
-			strcpy(command, "sudo pacman -Rs ");
+			strcpy(command, "paru -Rs ");
 			strcat(command, cmdflags);
 			learn(command, LEARN);
 			system(command);
@@ -131,7 +131,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'purge' option passed, but no app provided!\e[0m\n");
 				break;
 			}
-			strcpy(command, "sudo pacman -Rn ");
+			strcpy(command, "paru -Rn ");
 			strcat(command, cmdflags);
 			learn(command, LEARN);
 			system(command);
@@ -143,7 +143,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'search' option passed, but no search string provided!\e[0m\n");
 				break;
 			}
-		strcpy(command, "pacman -Ss ");
+		strcpy(command, "paru -Ss ");
 		strcat(command, cmdflags);
 		learn(command, LEARN);
 		system(command);
@@ -155,38 +155,38 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'find' option passed, but no search string provided!\e[0m\n");
 				break;
 			}
-			strcpy(command, "pacman -F ");
+			strcpy(command, "paru -F ");
 			strcat(command, cmdflags);
 			learn(command, LEARN);
 			system(command);
 			break;
 		} else if(!strcasecmp(argv[1], "update")) {
-			learn("sudo pacman -Sy", LEARN);
+			learn("paru -Sy", LEARN);
 			system("sudo pacman -Sy");
 			break;
 		} else if(!strcasecmp(argv[1], "upgrade")) {
-			learn("sudo pacman -Su", LEARN);
+			learn("paru -Su", LEARN);
 			system("sudo pacman -Su");
 			break;
 		} else if(!strcasecmp(argv[1], "full-upgrade")) {
-			learn("sudo pacman -Syu", LEARN);
+			learn("paru -Syu", LEARN);
 			system("sudo pacman -Syu");
 			break;
 		} else if(!strcasecmp(argv[1], "clean") || !strcasecmp(argv[1], "autoclean")) {
-			learn("sudo pacman -Scc", LEARN);
-			system("sudo pacman -Scc");
+			learn("paru -Scc", LEARN);
+			system("paru -Scc");
 			break;
 		} else if(!strcasecmp(argv[1], "autoremove")) {
-			learn("sudo pacman -Qdtq | sudo pacman -Rs -", LEARN);
-			if(system("test -z \"$(pacman -Qdtq)\"") == 0) {
+			learn("paru -Qdtq | paru -Rs -", LEARN);
+			if(system("test -z \"$(paru -Qdtq)\"") == 0) {
 				puts("Nothing to autoremove.");
 			} else {
-				system("pacman -Qdtq | sudo pacman -Rs -");
+				system("paru -Qdtq | paru -Rs -");
 			}
 			break;
 		} else if(!strcasecmp(argv[1], "list-installed")) {
 			learn(command, LEARN);
-			system("pacman -Qqe");
+			system("paru -Qqe");
 			break;
         } else if(!strcasecmp(argv[1], "show")) {
 			if(argv[2]) {
@@ -194,7 +194,7 @@ int main(int argc, char **argv) {
 #ifdef DEBUG
 				debug("comdflags", cmdflags);
 #endif
-				strcpy(command, "pacman -Qi ");
+				strcpy(command, "paru -Qi ");
 				strcat(command, cmdflags);
 			} else {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'show' option passed, but no package provided \e[0m\n");
@@ -210,7 +210,7 @@ int main(int argc, char **argv) {
 		} else if(!strcasecmp(argv[1], "show-all")) {
 			if(argv[2]) {
 				get_cmdargs(argc, argv, 2, cmdflags);
-				strcpy(command, "pacman -Si ");
+				strcpy(command, "paru -Si ");
 				strcat(command, cmdflags);
 			} else {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'show-all' option passed, but no package provided \e[0m\n");
