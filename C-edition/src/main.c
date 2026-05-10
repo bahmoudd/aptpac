@@ -198,7 +198,7 @@ int main(int argc, char **argv) {
 		} else if(!strcasecmp(argv[1], "clean") || !strcasecmp(argv[1], "autoclean")) {
 			if (strcmp(package_manager, "paru") == 0) {
                 learn("paru -Scc", LEARN);
-                system("paru");
+                system("paru -Scc");
             } else {
                 learn("sudo pacman -Scc", LEARN);
                 system("sudo pacman -Scc");
