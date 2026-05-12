@@ -206,11 +206,11 @@ int main(int argc, char **argv) {
             break;
 		} else if(!strcasecmp(argv[1], "autoremove")) {
             if (strcmp(package_manager, "paru") == 0) {
-                learn("paru -Qdtq | paru -Rs -", LEARN);
+                learn("paru -Qdtq | sudo pacman -Rs -", LEARN);
                 if(system("test -z \"$(paru -Qdtq)\"") == 0) {
                     puts("Nothing to autoremove.");
                 } else {
-                    system("paru -Qdtq | paru -Rs -");
+                    system("paru -Qdtq | sudo pacman -Rs -");
                 }
             } else {
                 learn("pacman -Qdtq | sudo pacman -Rs -", LEARN);
