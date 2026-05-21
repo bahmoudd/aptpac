@@ -163,7 +163,7 @@ int main(int argc, char **argv) {
 				fprintf(stderr, "\e[31m\e[1mERROR:\e[0m\e[31m 'find' option passed, but no search string provided!\e[0m\n");
 				break;
 			}
-            snprintf(command, sizeof(command), "%s -F", package_manager);
+            snprintf(command, sizeof(command), "%s -F ", package_manager);
 			strcat(command, cmdflags);
 			learn(command, LEARN);
 			system(command);
@@ -183,7 +183,7 @@ int main(int argc, char **argv) {
                 system("paru -Su");
             } else {
                 learn("sudo pacman -Su", LEARN);
-                system("sudo pacman -Su");
+                system("sudo pacman -Su ");
             }	
 			break;
 		} else if(!strcasecmp(argv[1], "full-upgrade")) {
